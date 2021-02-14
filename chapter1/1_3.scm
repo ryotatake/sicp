@@ -1,0 +1,7 @@
+(define (sum-of-max-squares x y z)
+  (cond ((and (> y x) (> z x)) (+ (* y y) (* z z)))
+        ((and (> x y) (> z y)) (+ (* x x) (* z z)))
+        ((and (> x z) (> y z)) (+ (* y y) (* z z)))
+  )
+)
+(sum-of-max-squares 1 3 5)
