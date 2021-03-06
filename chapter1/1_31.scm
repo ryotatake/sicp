@@ -19,11 +19,11 @@
   (product term 1 next n))
 
 (factorial 2)
-;Value: 4
+;Value: 2
 (factorial 3)
-;Value: 9
+;Value: 6
 (factorial 4)
-;Value: 27
+;Value: 24
 
 (define (pi n)
   (define (next i) (+ i 1))
