@@ -1,0 +1,33 @@
+(load "lib/average.scm")
+
+(define (make-point x y) (cons x y))
+(define (x-point p) (car p))
+(define (y-point p) (cdr p))
+
+(define (print-point p)
+  (display "(")
+  (display (x-point p))
+  (display ",")
+  (display (y-point p))
+  (display ")"))
+
+(define (make-segment start end) (cons start end))
+(define (start-segment segment) (car segment))
+(define (end-segment segment) (cdr segment))
+(define (midpoint-segment segment)
+  (define x1 (x-point (start-segment segment)))
+  (define y1 (y-point (start-segment segment)))
+  (define x2 (x-point (end-segment segment)))
+  (define y2 (y-point (end-segment segment)))
+  (make-point (average x1 x2) (average y1 y2)))
+
+(define (print-segment segment)
+  (newline)
+  (print-point (start-segment segment))
+  (display "->")
+  (print-point (end-segment segment)))
+
+(define start (make-point 1 2))
+(define end (make-point 5 10))
+(print-segment (make-segment start end))
+(print-point (midpoint-segment (make-segment start end)))
