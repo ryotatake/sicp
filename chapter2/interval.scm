@@ -19,10 +19,12 @@
     (make-interval (min p1 p2 p3 p4) (max p1 p2 p3 p4))))
 
 (define (div-interval x y)
-  (mul-interval
-    x
-    (make-interval (/ 1.0 (upper-bound y))
-                   (/ 1.0 (lower-bound y)))))
+  (if (and (positive? (upper-bound y)) (negative? (lower-bound y)))
+    (error "Division error (interval includes 0)" y)
+    (mul-interval
+      x
+      (make-interval (/ 1.0 (upper-bound y))
+                     (/ 1.0 (lower-bound y))))))
 
 (define (width x)
   (/ (- (upper-bound x) (lower-bound x))
@@ -61,3 +63,7 @@
 ; 除算では除算後のwidthを除算前のwidthで表すことができない
 (width (div-interval x y))
 ;Value: 1.3333333333333
+
+
+(define negative (make-interval -1 1))
+(div-interval x negative)
