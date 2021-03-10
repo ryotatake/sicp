@@ -24,6 +24,10 @@
     (make-interval (/ 1.0 (upper-bound y))
                    (/ 1.0 (lower-bound y)))))
 
+(define (width x)
+  (/ (- (upper-bound x) (lower-bound x))
+     2))
+
 (define (display-interval x)
   (display (car x))
   (display ",")
@@ -33,3 +37,27 @@
 (define y (make-interval 2 3))
 (display-interval (add-interval x y))
 (display-interval (sub-interval x y))
+
+; 加算では先にwidthを取って足しても、足したあとでwidthを取っても結果が同じ
+(+ (width x) (width y))
+;Value: 3
+(width (add-interval x y))
+;Value: 3
+
+; 減算では先にwidthを取って足すのと、引いたあとでwidthを取る結果が同じ
+(+ (width x) (width y))
+;Value: 3
+(width (sub-interval x y))
+;Value: 3
+
+; 乗算では乗算後のwidthを乗算前のwidthで表すことができない
+(width x)
+;Value: 2.5
+(width y)
+;Value: 0.5
+(width (mul-interval x y))
+;Value: 8
+
+; 除算では除算後のwidthを除算前のwidthで表すことができない
+(width (div-interval x y))
+;Value: 1.3333333333333
