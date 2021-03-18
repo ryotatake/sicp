@@ -46,7 +46,7 @@
 
 (define (width x)
   (/ (- (upper-bound x) (lower-bound x))
-     2))
+     2.0))
 
 (define (display-interval x)
   (display (car x))
