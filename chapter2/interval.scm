@@ -85,3 +85,23 @@
 
 (define negative (make-interval -1 1))
 (div-interval x negative)
+
+; ------------------------------------
+
+(define (make-center-percent c w)
+  (let ((upper-percent (+ 100 w))
+        (lower-percent (- 100 w)))
+  (make-interval (* c (/ upper-percent 100.0)) (* c (/ lower-percent 100.0)))))))
+
+(define (center i)
+  (/ (+ (lower-bound i) (upper-bound i)) 2.0))
+
+(define (percent i)
+  (* (- (/ (upper-bound i) (center i))
+        1)
+     100))
+
+(define x (make-center-percent 100 5))
+x
+(center x)
+(percent x)
