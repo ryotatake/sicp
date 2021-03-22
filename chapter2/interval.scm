@@ -26,7 +26,7 @@
     (cond ((positive? lx)
            (cond ((positive? ly) (make-interval (* lx ly) (* ux uy)))
                  ((negative? uy) (make-interval (* ux ly) (* lx uy)))
-                 (else           (make-interval (* ux ly) (* ux uy))))
+                 (else           (make-interval (* ux ly) (* ux uy)))))
           ((negative? ux)
            (cond ((positive? ly) (make-interval (* lx uy) (* ux ly)))
                  ((negative? uy) (make-interval (* ux uy) (* lx ly)))
@@ -34,7 +34,7 @@
           (else
            (cond ((positive? ly) (make-interval (* lx uy) (* ux uy)))
                  ((negative? uy) (make-interval (* ux ly) (* lx ly)))
-                 (else           (make-interval (min (* ux ly) (* lx uy)) (max (* ux uy) (* lx ly))))))))))
+                 (else           (make-interval (min (* ux ly) (* lx uy)) (max (* ux uy) (* lx ly)))))))))
 
 (define (div-interval x y)
   (if (and (positive? (upper-bound y)) (negative? (lower-bound y)))
